@@ -440,16 +440,24 @@ def css():
     .stButton>button { border-radius:9px;font-weight:650; }
 
     /* Mobile/browser dark-mode fix: keep form controls readable */
+    :root {
+        color-scheme: light !important;
+    }
+    div[data-baseweb="input"],
+    div[data-baseweb="textarea"],
     div[data-baseweb="input"] > div,
-    div[data-baseweb="textarea"] > div {
+    div[data-baseweb="textarea"] > div,
+    div[data-baseweb="input"] input,
+    div[data-baseweb="textarea"] textarea,
+    div[data-baseweb="select"] > div {
         background:#ffffff !important;
+        color:#15233b !important;
     }
     div[data-baseweb="input"] input,
     div[data-baseweb="textarea"] textarea {
-        background:#ffffff !important;
-        color:#15233b !important;
         -webkit-text-fill-color:#15233b !important;
         caret-color:#15233b !important;
+        color-scheme:light !important;
     }
     div[data-baseweb="input"] input::placeholder,
     div[data-baseweb="textarea"] textarea::placeholder {
