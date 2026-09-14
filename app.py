@@ -439,44 +439,32 @@ def css():
     div[data-testid="stMetric"] { background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px; }
     .stButton>button { border-radius:9px;font-weight:650; }
 
-    /* FINAL: input boxes WHITE, text BLACK, no nested input grids */
+    /* MOBILE FIX: ONE WHITE INPUT BOX + BLACK TEXT */
     :root {
         color-scheme: light !important;
     }
 
-    /* Labels / instructions: BLACK and readable */
+    /* Labels / field instructions: BLACK */
     [data-testid="stTextInput"] label,
     [data-testid="stTextArea"] label,
-    [data-testid="stNumberInput"] label,
-    [data-testid="stDateInput"] label,
-    [data-testid="stSelectbox"] label,
-    [data-testid="stMultiSelect"] label,
     [data-testid="stTextInput"] label *,
-    [data-testid="stTextArea"] label *,
-    [data-testid="stNumberInput"] label *,
-    [data-testid="stDateInput"] label *,
-    [data-testid="stSelectbox"] label *,
-    [data-testid="stMultiSelect"] label * {
+    [data-testid="stTextArea"] label * {
         color:#000000 !important;
         -webkit-text-fill-color:#000000 !important;
     }
 
-    /* Streamlit widget wrappers: NO background / NO extra grid */
+    /* Do not create backgrounds on the Streamlit widget wrapper */
     [data-testid="stTextInput"],
-    [data-testid="stTextArea"],
-    [data-testid="stNumberInput"],
-    [data-testid="stDateInput"],
-    [data-testid="stSelectbox"],
-    [data-testid="stMultiSelect"] {
+    [data-testid="stTextArea"] {
         background:transparent !important;
         background-color:transparent !important;
         border:0 !important;
         box-shadow:none !important;
     }
 
-    /* The input grid itself: WHITE */
-    [data-testid="stTextInput"] [data-baseweb="input"],
-    [data-testid="stTextArea"] [data-baseweb="textarea"] {
+    /* THE ONLY VISIBLE INPUT BOX: WHITE */
+    [data-testid="stTextInput"] div[data-baseweb="input"],
+    [data-testid="stTextArea"] div[data-baseweb="textarea"] {
         background:#ffffff !important;
         background-color:#ffffff !important;
         border:1px solid #9aa4b2 !important;
@@ -486,17 +474,18 @@ def css():
         color-scheme:light !important;
     }
 
-    /* Kill every nested BaseWeb background so there is ONLY one visible box */
-    [data-testid="stTextInput"] [data-baseweb="input"] * ,
-    [data-testid="stTextArea"] [data-baseweb="textarea"] * {
-        background:transparent !important;
-        background-color:transparent !important;
+    /* BaseWeb's immediate inner surface: WHITE, not a second box */
+    [data-testid="stTextInput"] div[data-baseweb="input"] > div,
+    [data-testid="stTextArea"] div[data-baseweb="textarea"] > div {
+        background:#ffffff !important;
+        background-color:#ffffff !important;
+        border:0 !important;
         box-shadow:none !important;
     }
 
-    /* Actual text field: WHITE background + BLACK text */
-    [data-testid="stTextInput"] [data-baseweb="input"] input,
-    [data-testid="stTextArea"] [data-baseweb="textarea"] textarea {
+    /* Actual editable area: WHITE background + BLACK typed text */
+    [data-testid="stTextInput"] div[data-baseweb="input"] input,
+    [data-testid="stTextArea"] div[data-baseweb="textarea"] textarea {
         appearance:none !important;
         -webkit-appearance:none !important;
         background:#ffffff !important;
@@ -510,17 +499,17 @@ def css():
         color-scheme:light !important;
     }
 
-    /* Password visibility control: no separate black nested box */
-    [data-testid="stTextInput"] [data-baseweb="input"] button {
+    /* Password eye stays inside the same white box */
+    [data-testid="stTextInput"] div[data-baseweb="input"] button {
         background:transparent !important;
         color:#000000 !important;
         border:0 !important;
         box-shadow:none !important;
     }
 
-    /* Placeholder: readable grey, not white */
-    [data-testid="stTextInput"] input::placeholder,
-    [data-testid="stTextArea"] textarea::placeholder {
+    /* Placeholder remains readable */
+    [data-testid="stTextInput"] div[data-baseweb="input"] input::placeholder,
+    [data-testid="stTextArea"] div[data-baseweb="textarea"] textarea::placeholder {
         color:#66758c !important;
         -webkit-text-fill-color:#66758c !important;
         opacity:1 !important;
