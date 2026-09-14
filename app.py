@@ -443,15 +443,40 @@ def css():
     :root {
         color-scheme: light !important;
     }
+    /* Force every input/grid row and its visible control surface to white */
+    div[data-testid="stTextInput"],
+    div[data-testid="stTextArea"],
+    div[data-testid="stNumberInput"],
+    div[data-testid="stDateInput"],
+    div[data-testid="stSelectbox"],
+    div[data-testid="stMultiSelect"],
+    div[data-testid="stTextInput"] > div,
+    div[data-testid="stTextArea"] > div,
+    div[data-testid="stNumberInput"] > div,
+    div[data-testid="stDateInput"] > div,
+    div[data-testid="stSelectbox"] > div,
+    div[data-testid="stMultiSelect"] > div,
     div[data-baseweb="input"],
     div[data-baseweb="textarea"],
+    div[data-baseweb="select"],
     div[data-baseweb="input"] > div,
     div[data-baseweb="textarea"] > div,
+    div[data-baseweb="select"] > div,
     div[data-baseweb="input"] input,
-    div[data-baseweb="textarea"] textarea,
-    div[data-baseweb="select"] > div {
+    div[data-baseweb="textarea"] textarea {
         background:#ffffff !important;
         color:#15233b !important;
+        color-scheme:light !important;
+    }
+
+    /* Remove mobile/browser dark-mode painting from the actual fields */
+    input,
+    textarea,
+    select {
+        background-color:#ffffff !important;
+        color:#15233b !important;
+        -webkit-text-fill-color:#15233b !important;
+        color-scheme:light !important;
     }
     div[data-baseweb="input"] input,
     div[data-baseweb="textarea"] textarea {
