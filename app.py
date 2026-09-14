@@ -438,6 +438,25 @@ def css():
     .footer { text-align:center;color:#8491a4;font-size:10px;padding:25px 0 12px; }
     div[data-testid="stMetric"] { background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px; }
     .stButton>button { border-radius:9px;font-weight:650; }
+
+    /* Mobile/browser dark-mode fix: keep form controls readable */
+    div[data-baseweb="input"] > div,
+    div[data-baseweb="textarea"] > div {
+        background:#ffffff !important;
+    }
+    div[data-baseweb="input"] input,
+    div[data-baseweb="textarea"] textarea {
+        background:#ffffff !important;
+        color:#15233b !important;
+        -webkit-text-fill-color:#15233b !important;
+        caret-color:#15233b !important;
+    }
+    div[data-baseweb="input"] input::placeholder,
+    div[data-baseweb="textarea"] textarea::placeholder {
+        color:#66758c !important;
+        -webkit-text-fill-color:#66758c !important;
+        opacity:1 !important;
+    }
     [data-testid="stSidebar"] .stButton>button { color:#ffffff !important; background:#122342 !important; border:1px solid rgba(255,255,255,.18) !important; }
     [data-testid="stSidebar"] .stButton>button:hover { color:#ffffff !important; background:#1a3158 !important; border-color:rgba(255,255,255,.28) !important; }
     .auth-shell { max-width:760px;margin:6vh auto 0; }
