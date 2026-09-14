@@ -1,0 +1,7 @@
+.env
+family_data.db
+family_data.db-shm
+family_data.db-wal
+uploads/
+__pycache__/
+*.pyc
