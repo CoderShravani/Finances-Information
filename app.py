@@ -439,12 +439,12 @@ def css():
     div[data-testid="stMetric"] { background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px; }
     .stButton>button { border-radius:9px;font-weight:650; }
 
-    /* FINAL MOBILE INPUT FIX: one white box, black text, no nested grid */
+    /* FINAL: input boxes WHITE, text BLACK, no nested input grids */
     :root {
         color-scheme: light !important;
     }
 
-    /* Labels and instructions remain dark/readable */
+    /* Labels / instructions: BLACK and readable */
     [data-testid="stTextInput"] label,
     [data-testid="stTextArea"] label,
     [data-testid="stNumberInput"] label,
@@ -461,22 +461,20 @@ def css():
         -webkit-text-fill-color:#000000 !important;
     }
 
-    /* Widget wrappers themselves are transparent: no extra grey/nested box */
+    /* Streamlit widget wrappers: NO background / NO extra grid */
     [data-testid="stTextInput"],
     [data-testid="stTextArea"],
     [data-testid="stNumberInput"],
     [data-testid="stDateInput"],
     [data-testid="stSelectbox"],
-    [data-testid="stMultiSelect"],
-    [data-testid="stTextInput"] > div,
-    [data-testid="stTextArea"] > div {
+    [data-testid="stMultiSelect"] {
         background:transparent !important;
         background-color:transparent !important;
         border:0 !important;
         box-shadow:none !important;
     }
 
-    /* ONE visible white input box */
+    /* The input grid itself: WHITE */
     [data-testid="stTextInput"] [data-baseweb="input"],
     [data-testid="stTextArea"] [data-baseweb="textarea"] {
         background:#ffffff !important;
@@ -485,44 +483,49 @@ def css():
         border-radius:6px !important;
         box-shadow:none !important;
         color:#000000 !important;
+        color-scheme:light !important;
     }
 
-    /* Remove nested BaseWeb surfaces/borders */
-    [data-testid="stTextInput"] [data-baseweb="input"] > div,
-    [data-testid="stTextArea"] [data-baseweb="textarea"] > div {
+    /* Kill every nested BaseWeb background so there is ONLY one visible box */
+    [data-testid="stTextInput"] [data-baseweb="input"] * ,
+    [data-testid="stTextArea"] [data-baseweb="textarea"] * {
         background:transparent !important;
         background-color:transparent !important;
-        border:0 !important;
         box-shadow:none !important;
     }
 
-    /* Actual typed text: BLACK */
-    [data-testid="stTextInput"] input,
-    [data-testid="stTextArea"] textarea,
-    div[data-baseweb="input"] input,
-    div[data-baseweb="textarea"] textarea {
+    /* Actual text field: WHITE background + BLACK text */
+    [data-testid="stTextInput"] [data-baseweb="input"] input,
+    [data-testid="stTextArea"] [data-baseweb="textarea"] textarea {
         appearance:none !important;
         -webkit-appearance:none !important;
-        background:transparent !important;
-        background-color:transparent !important;
+        background:#ffffff !important;
+        background-color:#ffffff !important;
         color:#000000 !important;
         -webkit-text-fill-color:#000000 !important;
         caret-color:#000000 !important;
-        color-scheme:light !important;
         border:0 !important;
         outline:0 !important;
         box-shadow:none !important;
+        color-scheme:light !important;
     }
 
-    /* Placeholder text remains clearly readable */
+    /* Password visibility control: no separate black nested box */
+    [data-testid="stTextInput"] [data-baseweb="input"] button {
+        background:transparent !important;
+        color:#000000 !important;
+        border:0 !important;
+        box-shadow:none !important;
+    }
+
+    /* Placeholder: readable grey, not white */
     [data-testid="stTextInput"] input::placeholder,
-    [data-testid="stTextArea"] textarea::placeholder,
-    div[data-baseweb="input"] input::placeholder,
-    div[data-baseweb="textarea"] textarea::placeholder {
+    [data-testid="stTextArea"] textarea::placeholder {
         color:#66758c !important;
         -webkit-text-fill-color:#66758c !important;
         opacity:1 !important;
     }
+
     [data-testid="stSidebar"] .stButton>button { color:#ffffff !important; background:#122342 !important; border:1px solid rgba(255,255,255,.18) !important; }
     [data-testid="stSidebar"] .stButton>button:hover { color:#ffffff !important; background:#1a3158 !important; border-color:rgba(255,255,255,.28) !important; }
     .auth-shell { max-width:760px;margin:6vh auto 0; }
