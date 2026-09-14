@@ -439,12 +439,12 @@ def css():
     div[data-testid="stMetric"] { background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px; }
     .stButton>button { border-radius:9px;font-weight:650; }
 
-    /* Mobile form fix: white INPUTS only; labels/instructions stay dark and readable */
+    /* FINAL MOBILE INPUT FIX: one white box, black text, no nested grid */
     :root {
         color-scheme: light !important;
     }
 
-    /* Keep Streamlit labels and helper/instruction text dark */
+    /* Labels and instructions remain dark/readable */
     [data-testid="stTextInput"] label,
     [data-testid="stTextArea"] label,
     [data-testid="stNumberInput"] label,
@@ -457,12 +457,11 @@ def css():
     [data-testid="stDateInput"] label *,
     [data-testid="stSelectbox"] label *,
     [data-testid="stMultiSelect"] label * {
-        color:#15233b !important;
-        -webkit-text-fill-color:#15233b !important;
+        color:#000000 !important;
+        -webkit-text-fill-color:#000000 !important;
     }
 
-    /* Do NOT paint the whole widget/grid grey or white.
-       Only the actual editable field gets a white background. */
+    /* Widget wrappers themselves are transparent: no extra grey/nested box */
     [data-testid="stTextInput"],
     [data-testid="stTextArea"],
     [data-testid="stNumberInput"],
@@ -473,31 +472,49 @@ def css():
     [data-testid="stTextArea"] > div {
         background:transparent !important;
         background-color:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
     }
 
+    /* ONE visible white input box */
     [data-testid="stTextInput"] [data-baseweb="input"],
-    [data-testid="stTextInput"] [data-baseweb="input"] > div,
-    [data-testid="stTextArea"] [data-baseweb="textarea"],
-    [data-testid="stTextArea"] [data-baseweb="textarea"] > div,
-    div[data-baseweb="input"] input,
-    div[data-baseweb="textarea"] textarea {
+    [data-testid="stTextArea"] [data-baseweb="textarea"] {
         background:#ffffff !important;
         background-color:#ffffff !important;
+        border:1px solid #9aa4b2 !important;
+        border-radius:6px !important;
+        box-shadow:none !important;
+        color:#000000 !important;
     }
 
+    /* Remove nested BaseWeb surfaces/borders */
+    [data-testid="stTextInput"] [data-baseweb="input"] > div,
+    [data-testid="stTextArea"] [data-baseweb="textarea"] > div {
+        background:transparent !important;
+        background-color:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+    }
+
+    /* Actual typed text: BLACK */
     [data-testid="stTextInput"] input,
     [data-testid="stTextArea"] textarea,
     div[data-baseweb="input"] input,
     div[data-baseweb="textarea"] textarea {
         appearance:none !important;
         -webkit-appearance:none !important;
-        color:#15233b !important;
-        -webkit-text-fill-color:#15233b !important;
-        caret-color:#15233b !important;
+        background:transparent !important;
+        background-color:transparent !important;
+        color:#000000 !important;
+        -webkit-text-fill-color:#000000 !important;
+        caret-color:#000000 !important;
         color-scheme:light !important;
+        border:0 !important;
+        outline:0 !important;
         box-shadow:none !important;
     }
 
+    /* Placeholder text remains clearly readable */
     [data-testid="stTextInput"] input::placeholder,
     [data-testid="stTextArea"] textarea::placeholder,
     div[data-baseweb="input"] input::placeholder,
